@@ -4,9 +4,7 @@ var browserSync = require('browser-sync').create();
 
 gulp.task('browserSync', function() {
 	browserSync.init({
-		server: {
-			baseDir: 'http://localhost/code_snippets/'
-		}
+			proxy: 'http://localhost/code_snippets/'
 	});
 
 });
@@ -22,7 +20,8 @@ gulp.task('sass', function() {
 
 gulp.task('watch', ['browserSync', 'sass'],  function() {
 	gulp.watch('scss/**/*.scss', ['sass']);
-	gulp.watch('*.html', browserSync.reload );
+	gulp.watch('*.php', browserSync.reload );
+	gulp.watch('php/*.php', browserSync.reload);
 	gulp.watch('js/main.js', browserSync.reload);
 	gulp.watch('js/**/*.json', browserSync.reload);
 	gulp.watch('images/**/*', browserSync.reload);
